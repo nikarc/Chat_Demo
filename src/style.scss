@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=K2D');
+
+$chatHeight: 500px;
+$borderRadius: 10px;
+$backgroundColor: #f6f9fc;
+$backgroundColorLight: lighten($backgroundColor, 10%);
+$buttonHeight: 40px;
+
+// Colors
+$lightBlue: #09cdff;
+$bubbleColor: #25ddf5;
+$superLightBlue: #8BE7E6;
+
+body {
+  background-color: $lightBlue;
+}
+
+#app-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#chat {
+  background-color: $backgroundColor;
+  width: 500px;
+  height: $chatHeight;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: $borderRadius;
+  box-shadow: 10px 10px 20px rgba(black, 0.15);
+  overflow: hidden;
+}
+
+#chat-window,
+#chat-input {
+  border: 1px solid darken($backgroundColor, 5%);
+  box-sizing: border-box;
+  background-color: $backgroundColorLight;
+}
+
+@keyframes slideChatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-45px);
+  }
+}
+
+#chat-window {
+  height: ($chatHeight / 3) * 2;
+  background-color: white;
+  border-radius: $borderRadius $borderRadius 0 0;
+  margin-bottom: 5px;
+  padding: 1.75em;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
+}
+
+#chat-messages-wrap.slide {
+  animation-name: slideChatUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.125s;
+}
+
+#chat-input-wrap {
+  height: calc(#{$chatHeight} / 3);
+}
+
+#chat-input {
+  width: 100%;
+  height: calc(100% - #{$buttonHeight});
+  padding: 1.75em;
+  margin: 0;
+}
+
+.chat-bubble-wrap {
+  display: flex;
+
+  &.to {
+    flex-direction: row-reverse;
+  }
+}
+
+.chat-bubble {
+  padding: 7px 20px;
+  display: inline-block;
+  border-radius: 20px;
+  font-family: 'K2D', sans-serif;
+  color: $backgroundColorLight;
+  margin-bottom: 10px;
+
+  &.to {
+    background-color: $bubbleColor;
+  }
+
+  &.from {
+    background-color: #c7c7c7;
+  }
+}
+
+.app-btn {
+  background-color: $bubbleColor;
+  color: $backgroundColorLight;
+  border: none;
+  width: 100%;
+  height: $buttonHeight;
+  margin: 0;
+  margin-top: -5px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: darken($bubbleColor, 20%);
+    color: darken($backgroundColorLight, 20%);
+    cursor: initial;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-108px);
+  }
+}
+.temp-message {
+  animation-name: slideUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  // animation-delay: 0.125s;
+}
